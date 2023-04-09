@@ -1,4 +1,4 @@
-import E621 from "e621";
+import E621, { Post } from "e621";
 import FS from "fs";
 import Path from "path";
 import Request from "request";
@@ -15,42 +15,82 @@ const numberToArray = (num: number, limit: number): number[] => {
     return arr;
 };
 
-const getPostsByTags = async (tags: string, limit: number) => {
+const getPostsByTags = async (tags: string, limit: number): Promise<Post[]> => {
     const postList = [];
     const pageLimits = numberToArray(limit, 320);
     let pageIndex = 0;
     for (const pageLimit of pageLimits) {
         pageIndex++;
-        console.log(`Retrieving Page ${pageIndex}`);
+        console.log(`\nRetrieving Page :: ${pageIndex}`);
         const posts = await e621.posts.search({ tags, limit: pageLimit, page: pageIndex });
         postList.push(...posts);
         if (posts.length < pageLimit) break;
     }
+    console.log(`\nRetrieved ${postList.length.toLocaleString()} Posts.`);
     return postList;
 };
 
-const download = async (name: string, url: string, ext: string, dir: string) => {
-    await new Promise<void>((resolve, reject) => {
+const download = (name: string, url: string, ext: string, folderPath: string): Promise<void> =>
+    new Promise<void>((resolve, reject) => {
         Request.head(url, (err, res, body) => {
-            if (err) reject(err);
-            else
-                Request(url)
-                    .pipe(FS.createWriteStream(Path.resolve(dir, `${name}.${ext}`)))
-                    .on("close", resolve);
+            if (err) {
+                console.error(`\nFailed to retrieve file metadata for ${name} :: ${err}`);
+                reject(err);
+                return;
+            }
+
+            const filePath = Path.resolve(folderPath, `${name}.${ext}`);
+            Request(url).on("error", reject).on("close", resolve).pipe(FS.createWriteStream(filePath));
         });
     });
-};
 
-export default async (tags: string, limit: number, dir: string) => {
-    if (!limit || limit <= 0) limit = 10;
-    const folder = FS.readdirSync(dir);
-    const posts = (await getPostsByTags(`${Config.static_tags} ${tags}`, limit)).filter((a) => !folder.find((b) => b.split(".")[0] === a.id.toString()));
-    console.log(`Retrieved ${posts.length} Posts`);
-    let downloaded = 0;
-    for (const post of posts) {
-        await download(post.id.toString(), post.file.url, post.file.ext, dir);
-        console.log(`Post ${post.id} Downloaded`);
-        downloaded++;
-    }
-    console.log(`Downloaded ${downloaded.toLocaleString()} Posts`);
+export default (tags: string, limit: number, folderPath: string): Promise<void> => {
+    return new Promise<void>((resolve, reject) => {
+        if (!limit || limit <= 0) limit = 10;
+
+        folderPath = Path.resolve(folderPath);
+
+        if (!Path.isAbsolute(folderPath)) {
+            console.log(`\n${folderPath} is not an absolute path.`);
+            reject(`Invalid path: ${folderPath}`);
+        } else if (!FS.existsSync(folderPath)) {
+            try {
+                FS.mkdirSync(folderPath);
+                console.log(`\nFolder created at :: ${folderPath}`);
+            } catch (err) {
+                console.error(`\nFailed to create folder :: ${err}`);
+                reject(err);
+            }
+        }
+
+        const folder = FS.readdirSync(folderPath);
+        let downloaded = 0;
+        let postIndex = 0;
+
+        getPostsByTags(`${Config.static_tags} ${tags}`, limit)
+            .then((posts) =>
+                posts
+                    .filter((a) => !folder.find((b) => b.split(".")[0] === a.id.toString()))
+                    .reduce<Promise<void>>((previousPromise, post) => {
+                        return previousPromise
+                            .then(async () => {
+                                console.log(`\nPost ${(++postIndex).toLocaleString()} :: ${post.id} Downloading.`);
+                                await download(post.id.toString(), post.file.url, post.file.ext, folderPath);
+                            })
+                            .then(() => {
+                                console.log("Download Successful.");
+                                downloaded++;
+                            })
+                            .catch((err) => console.error(`Download Failed :: ${err}`));
+                    }, Promise.resolve())
+            )
+            .then(() => {
+                console.log(`\nDownloaded ${downloaded.toLocaleString()} Posts.`);
+                resolve();
+            })
+            .catch((err) => {
+                console.error(`\nFailed to retrieve posts :: ${err}`);
+                reject(err);
+            });
+    });
 };
