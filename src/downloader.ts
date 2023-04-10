@@ -15,7 +15,7 @@ try {
     console.log(err);
 }
 
-const MainMessage = "Hewo bean uwu, welcome to the E621 downloader by DSTitan!";
+const MainMessage = "Hewo bean uwu, welcome to the E621 downloader by DSTitan!\n\nGithub - https://github.com/DSTitan/E621-Downloader\nTwitter - https://twitter.com/DeathStormTitan\n\n   ,---,.                  ,----,       ,---, \n ,'  .' |    ,---.       .'   .' \\   ,`--.' | \n,---.'   |   /     \\    ,----,'    | /    /  : \n|   |   .'  /    / '    |    :  .  ;:    |.' ' \n:   :  |-, .    ' /     ;    |.'  / `----':  | \n:   |  ;/|'    / ;      `----'/  ;     '   ' ; \n|   :   .'|   :  \\        /  ;  /      |   | | \n|   |  |-,;   |   ``.    ;  /  /-,     '   : ; \n'   :  ;/|'   ;      \\  /  /  /.`|     |   | ' \n|   |    \\'   |  .\\  |./__;      :     '   : | \n|   :   .'|   :  ';  :|   :    .'      ;   |.' \n|   | ,'   \\   \\    / ;   | .'         '---'   \n`----'      `---`--`  `---'                     \n\n              __..--''``---....___   _..._    __\n/// //_.-'    .-/\";  `        ``<._  ``.''_ `. / // /\n///_.-' _..--.'_    \\                    `( ) ) // //\n/ (_..-' // (< _     ;_..__               ; `' / ///\n/ // // //  `-._,_)' // / ``--...____..-' /// / //";
 
 const numberToArray = (num: number, limit: number): number[] => {
     const arr = [];
@@ -33,7 +33,7 @@ const getPostsByTags = async (tags: string, limit: number, message: string): Pro
     for (const pageLimit of pageLimits) {
         pageIndex++;
         console.clear();
-        console.log(message + `Pages Retrieved :: ${pageIndex}\nPosts Retrieved :: N/A\nSuccessful :: N/A\nFailed :: N/A`);
+        console.log(message + `Pages Retrieved :: ${pageIndex}\nPosts Retrieved :: N/A\n\nSuccessful :: N/A\nFailed :: N/A`);
         console.log(`\nRetrieving Page :: ${pageIndex}`);
         const posts = await e621.posts.search({ tags, limit: pageLimit, page: pageIndex });
         postList.push(...posts);
@@ -59,25 +59,23 @@ const download = (name: string, url: string, ext: string, folderPath: string): P
 export default (): Promise<string> => {
     return new Promise<string>((resolve, reject) => {
         console.clear();
-        console.log(`${MainMessage}\n\nStatic Tags :: ${Config?.static_tags || "N/A"}\nTags :: N/A\nLimit :: N/A\nDestination :: N/A\n\nPages Retrieved :: N/A\nPosts Retrieved :: N/A\nSuccessful :: N/A\nFailed :: N/A`);
+        console.log(`${MainMessage}\n\nStatic Tags :: ${Config?.static_tags || "N/A"}\nTags :: N/A\nLimit :: N/A\nDestination :: N/A\n\nPages Retrieved :: N/A\nPosts Retrieved :: N/A\n\nSuccessful :: N/A\nFailed :: N/A`);
 
         Interface.question("\nPlease enter the tags you wish to filter by.\n> ", (tags) => {
             console.clear();
-            console.log(`${MainMessage}\n\nStatic Tags :: ${Config?.static_tags || "N/A"}\nTags :: ${tags}\nLimit :: N/A\nDestination :: N/A\n\nPages Retrieved :: N/A\nPosts Retrieved :: N/A\nSuccessful :: N/A\nFailed :: N/A`);
+            console.log(`${MainMessage}\n\nStatic Tags :: ${Config?.static_tags || "N/A"}\nTags :: ${tags}\nLimit :: N/A\nDestination :: N/A\n\nPages Retrieved :: N/A\nPosts Retrieved :: N/A\n\nSuccessful :: N/A\nFailed :: N/A`);
             Interface.question("\nEnter the limit of post you wish to retrieve.\n> ", (limitRaw) => {
                 let limit = parseInt(limitRaw);
                 if (!limit || limit <= 0) limit = 10;
 
                 console.clear();
-                console.log(`${MainMessage}\n\nStatic Tags :: ${Config?.static_tags || "N/A"}\nTags :: ${tags}\nLimit :: ${limit}\nDestination :: N/A\n\nPages Retrieved :: N/A\nPosts Retrieved :: N/A\nSuccessful :: N/A\nFailed :: N/A`);
+                console.log(`${MainMessage}\n\nStatic Tags :: ${Config?.static_tags || "N/A"}\nTags :: ${tags}\nLimit :: ${limit}\nDestination :: N/A\n\nPages Retrieved :: N/A\nPosts Retrieved :: N/A\n\nSuccessful :: N/A\nFailed :: N/A`);
 
                 Interface.question("\nEnter a location where the posts will be downloaded.\n> ", (folderPath) => {
                     folderPath = Path.resolve(folderPath);
 
-                    if (!Path.isAbsolute(folderPath)) {
-                        console.log(`\n${folderPath} is not an absolute path.`);
-                        reject(`Invalid path: ${folderPath}`);
-                    } else if (!FS.existsSync(folderPath)) {
+                    if (!folderPath || !Path.isAbsolute(folderPath)) folderPath = Path.resolve("./downloads");
+                    else if (!FS.existsSync(folderPath)) {
                         try {
                             FS.mkdirSync(folderPath);
                         } catch (err) {
@@ -87,7 +85,7 @@ export default (): Promise<string> => {
                     }
 
                     console.clear();
-                    console.log(`${MainMessage}\n\nStatic Tags :: ${Config?.static_tags || "N/A"}\nTags :: ${tags}\nLimit :: ${limit}\nDestination :: ${folderPath}\n\nPages Retrieved :: N/A\nPosts Retrieved :: N/A\nSuccessful :: N/A\nFailed :: N/A`);
+                    console.log(`${MainMessage}\n\nStatic Tags :: ${Config?.static_tags || "N/A"}\nTags :: ${tags}\nLimit :: ${limit}\nDestination :: ${folderPath}\n\nPages Retrieved :: N/A\nPosts Retrieved :: N/A\n\nSuccessful :: N/A\nFailed :: N/A`);
 
                     const folder = FS.readdirSync(folderPath);
                     let downloaded = 0;
@@ -97,30 +95,29 @@ export default (): Promise<string> => {
 
                     getPostsByTags(`${Config?.static_tags} ${tags}`, limit, `${MainMessage}\n\nStatic Tags :: ${Config?.static_tags || "N/A"}\nTags :: ${tags}\nLimit :: ${limit}\nDestination :: ${folderPath}\n\n`)
                         .then((posts) => {
+                            posts = posts.filter((a) => !folder.find((b) => b.split(".")[0] === a.id.toString()));
                             totalPosts = posts.length;
-                            return posts
-                                .filter((a) => !folder.find((b) => b.split(".")[0] === a.id.toString()))
-                                .reduce<Promise<void>>(
-                                    (previousPromise, post) =>
-                                        previousPromise
-                                            .then(async () => {
-                                                console.clear();
-                                                console.log(`${MainMessage}\n\nStatic Tags :: ${Config?.static_tags || "N/A"}\nTags :: ${tags}\nLimit :: ${limit}\nDestination :: ${folderPath}\n\nPages Retrieved :: ${(totalPosts / 320).toFixed().toLocaleString()}\nPosts Retrieved :: ${totalPosts.toLocaleString()}\nSuccessful :: ${downloaded}\nFailed :: ${failed}`);
-                                                console.log(`\nDownloading Post ${(++postIndex).toLocaleString()} / ${totalPosts.toLocaleString()} :: ID ${post.id}`);
-                                                await download(post.id.toString(), post.file.url, post.file.ext, folderPath);
-                                            })
-                                            .then(() => {
-                                                downloaded++;
-                                            })
-                                            .catch((err) => {
-                                                failed++;
-                                            }),
-                                    Promise.resolve()
-                                );
+                            return posts.reduce<Promise<void>>(
+                                (previousPromise, post) =>
+                                    previousPromise
+                                        .then(async () => {
+                                            console.clear();
+                                            console.log(`${MainMessage}\n\nStatic Tags :: ${Config?.static_tags || "N/A"}\nTags :: ${tags}\nLimit :: ${limit}\nDestination :: ${folderPath}\n\nPages Retrieved :: ${Math.ceil(totalPosts / 320).toLocaleString()}\nPosts Retrieved :: ${totalPosts.toLocaleString()}\n\nSuccessful :: ${downloaded}\nFailed :: ${failed}`);
+                                            console.log(`\nDownloading Post ${(++postIndex).toLocaleString()} / ${totalPosts.toLocaleString()} :: ID ${post.id}`);
+                                            await download(post.id.toString(), post.file.url, post.file.ext, folderPath);
+                                        })
+                                        .then(() => {
+                                            downloaded++;
+                                        })
+                                        .catch((err) => {
+                                            failed++;
+                                        }),
+                                Promise.resolve()
+                            );
                         })
                         .then(() => {
                             console.clear();
-                            console.log(`${MainMessage}\n\nStatic Tags :: ${Config?.static_tags || "N/A"}\nTags :: ${tags}\nLimit :: ${limit}\nDestination :: ${folderPath}\n\nPages Retrieved :: ${(totalPosts / 320).toLocaleString()}\nPosts Retrieved :: ${totalPosts.toLocaleString()}\nSuccessful :: ${downloaded}\nFailed :: ${failed}`);
+                            console.log(`${MainMessage}\n\nStatic Tags :: ${Config?.static_tags || "N/A"}\nTags :: ${tags}\nLimit :: ${limit}\nDestination :: ${folderPath}\n\nPages Retrieved :: ${Math.ceil(totalPosts / 320).toLocaleString()}\nPosts Retrieved :: ${totalPosts.toLocaleString()}\n\nSuccessful :: ${downloaded}\nFailed :: ${failed}`);
                             console.log(`\nDownloaded ${downloaded.toLocaleString()} Posts.`);
                             Interface.question("\nWhat do you wish to do next, type the number?\n1. Download More     2. Exit\n> ", resolve);
                         })
