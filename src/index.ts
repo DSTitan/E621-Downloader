@@ -1,13 +1,17 @@
-import PromptSync from "prompt-sync";
-
 import Downloader from "./downloader";
 
-const Prompt = PromptSync();
+const Process = () =>
+    Downloader()
+        .then((next) => {
+            switch (next) {
+                case "1.":
+                case "1":
+                    Process();
+                    break;
+                default:
+                    process.exit();
+            }
+        })
+        .catch(() => {});
 
-const Tags = Prompt("Hewo bean uwu, welcome to the E621 downloader by DSTitan!\n\nPlease enter the tags you wish to filter by.\n> ");
-const Limit = parseInt(Prompt("\nEnter the limit of post you wish to retrieve.\n> "));
-const Path = Prompt("\nEnter a location where the posts will be downloaded.\n> ");
-
-Downloader(Tags, Limit, Path)
-    .then(() => process.exit(0))
-    .catch(() => process.exit(1));
+Process();

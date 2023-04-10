@@ -1,23 +1,23 @@
 {
-  "compilerOptions": {
-    "target": "ES2022",
-    "module": "CommonJS",
-    "moduleResolution": "node",
-    "baseUrl": "src",
-    "resolveJsonModule": true,
-    "allowJs": true,
-    "sourceMap": true,
-    "outDir": "build",
-    "removeComments": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "skipDefaultLibCheck": true,
-    "skipLibCheck": true,
-    "downlevelIteration": true
-  },
-  "include": ["./src/**/*"]
+    "compilerOptions": {
+        "target": "ES2022",
+        "module": "CommonJS",
+        "moduleResolution": "node",
+        "baseUrl": "src",
+        "resolveJsonModule": true,
+        "allowJs": true,
+        "sourceMap": true,
+        "outDir": "build",
+        "removeComments": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "skipDefaultLibCheck": true,
+        "skipLibCheck": true,
+        "downlevelIteration": true
+    },
+    "include": ["./src/**/*"]
 }

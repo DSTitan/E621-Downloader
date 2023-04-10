@@ -1,4 +1,6 @@
 build
+bin
 node_modules
 package-lock.json
 .prettierrc.js
+setIcons.js
