@@ -1,8 +1,8 @@
 {
     "name": "fluffy-fetcher-e621",
     "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
+    "description": "Quickly fetch and download e621 posts by specific tags.",
+    "main": "build/index.js",
     "scripts": {
         "start": "node build/index.js",
         "dev": "tsc-watch --onSuccess \"node ./build/index.js\"",

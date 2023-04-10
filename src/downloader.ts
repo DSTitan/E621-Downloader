@@ -15,7 +15,7 @@ try {
     console.log(err);
 }
 
-const MainMessage = "Hewo bean uwu, welcome to the E621 downloader by DSTitan!\n\nGithub - https://github.com/DSTitan/E621-Downloader\nTwitter - https://twitter.com/DeathStormTitan\n\n   ,---,.                  ,----,       ,---, \n ,'  .' |    ,---.       .'   .' \\   ,`--.' | \n,---.'   |   /     \\    ,----,'    | /    /  : \n|   |   .'  /    / '    |    :  .  ;:    |.' ' \n:   :  |-, .    ' /     ;    |.'  / `----':  | \n:   |  ;/|'    / ;      `----'/  ;     '   ' ; \n|   :   .'|   :  \\        /  ;  /      |   | | \n|   |  |-,;   |   ``.    ;  /  /-,     '   : ; \n'   :  ;/|'   ;      \\  /  /  /.`|     |   | ' \n|   |    \\'   |  .\\  |./__;      :     '   : | \n|   :   .'|   :  ';  :|   :    .'      ;   |.' \n|   | ,'   \\   \\    / ;   | .'         '---'   \n`----'      `---`--`  `---'                     \n\n              __..--''``---....___   _..._    __\n/// //_.-'    .-/\";  `        ``<._  ``.''_ `. / // /\n///_.-' _..--.'_    \\                    `( ) ) // //\n/ (_..-' // (< _     ;_..__               ; `' / ///\n/ // // //  `-._,_)' // / ``--...____..-' /// / //";
+const MainMessage = "Hewo bean UwU, Welcome to the Fluffy Fetcher E621 by DSTitan!\n\nGithub - https://github.com/DSTitan/E621-Downloader\nTwitter - https://twitter.com/DeathStormTitan\n\n   ,---,.                  ,----,       ,---, \n ,'  .' |    ,---.       .'   .' \\   ,`--.' | \n,---.'   |   /     \\    ,----,'    | /    /  : \n|   |   .'  /    / '    |    :  .  ;:    |.' ' \n:   :  |-, .    ' /     ;    |.'  / `----':  | \n:   |  ;/|'    / ;      `----'/  ;     '   ' ; \n|   :   .'|   :  \\        /  ;  /      |   | | \n|   |  |-,;   |   ``.    ;  /  /-,     '   : ; \n'   :  ;/|'   ;      \\  /  /  /.`|     |   | ' \n|   |    \\'   |  .\\  |./__;      :     '   : | \n|   :   .'|   :  ';  :|   :    .'      ;   |.' \n|   | ,'   \\   \\    / ;   | .'         '---'   \n`----'      `---`--`  `---'                     \n\n              __..--''``---....___   _..._    __\n/// //_.-'    .-/\";  `        ``<._  ``.''_ `. / // /\n///_.-' _..--.'_    \\                    `( ) ) // //\n/ (_..-' // (< _     ;_..__               ; `' / ///\n/ // // //  `-._,_)' // / ``--...____..-' /// / //";
 
 const numberToArray = (num: number, limit: number): number[] => {
     const arr = [];
@@ -104,10 +104,12 @@ export default (): Promise<string> => {
                                             console.clear();
                                             console.log(`${MainMessage}\n\nStatic Tags :: ${Config?.static_tags || "N/A"}\nTags :: ${tags}\nLimit :: ${limit}\nDestination :: ${folderPath}\n\nPages Retrieved :: ${Math.ceil(totalPosts / 320).toLocaleString()}\nPosts Retrieved :: ${totalPosts.toLocaleString()}\n\nSuccessful :: ${downloaded}\nFailed :: ${failed}`);
                                             console.log(`\nDownloading Post ${(++postIndex).toLocaleString()} / ${totalPosts.toLocaleString()} :: ID ${post.id}`);
-                                            await download(post.id.toString(), post.file.url, post.file.ext, folderPath);
-                                        })
-                                        .then(() => {
-                                            downloaded++;
+                                            try {
+                                                await download(post.id.toString(), post.file.url, post.file.ext, folderPath);
+                                                downloaded++;
+                                            } catch {
+                                                failed++;
+                                            }
                                         })
                                         .catch((err) => {
                                             failed++;
@@ -123,7 +125,7 @@ export default (): Promise<string> => {
                         })
                         .catch((err) => {
                             console.error(`\nFailed to retrieve posts :: ${err}`);
-                            reject(err);
+                            Interface.question("\nWhat do you wish to do next, type the number?\n1. Retry     2. Exit\n> ", resolve);
                         });
                 });
             });

@@ -1,2 +1,3 @@
-# E621-Downloader
- Bulk download posts from e621 by specific tags.
+# Fluffy Fetcher E621
+
+Quickly fetch and download e621 posts by specific tags.
