@@ -2,7 +2,7 @@
 
 [<img src="https://img.shields.io/github/downloads/DSTitan/Fluffy-Fetcher-E621/total?color=blueviolet&label=Downloads" width="100" align="right" alt="downloads">](https://github.com/DSTitan/Fluffy-Fetcher-E621/releases)
 
-<img src="https://media.discordapp.net/attachments/845764947928416297/1094852312838721546/Icon.png" width="250" align="left" alt="e621 mascot, Esix">
+[<img src="https://media.discordapp.net/attachments/845764947928416297/1094852312838721546/Icon.png" width="250" align="left" alt="e621 mascot, Esix">](https://github.com/DSTitan/Fluffy-Fetcher-E621/releases)
 
 A quick and easy way to bulk fetch and download [e621](https://e621.net) posts by tags.
 
