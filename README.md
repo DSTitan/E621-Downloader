@@ -2,7 +2,7 @@
 
 <img src="https://media.discordapp.net/attachments/845764947928416297/1094852312838721546/Icon.png" width="250" align="left" alt="e621 mascot, Esix">
 
-A quick and easy way to fetch and download [e621](https://e621.net) posts by specific tags.
+A quick and easy way to bulk fetch and download [e621](https://e621.net) posts by tags.
 
 The download can be found [here](https://github.com/DSTitan/Fluffy-Fetcher-E621/releases). <br/><br/>
 
