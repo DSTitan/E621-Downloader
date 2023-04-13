@@ -1,6 +1,6 @@
 # Fluffy Fetcher E621
 
-[<img src="https://img.shields.io/github/downloads/DSTitan/Fluffy-Fetcher-E621/total?color=blueviolet&label=Downloads" width="100" align="right" alt="downloads">](https://github.com/DSTitan/Fluffy-Fetcher-E621/releases)
+[<img src="https://img.shields.io/github/downloads/DSTitan/Fluffy-Fetcher-E621/total?color=004996&label=Downloads&style=for-the-badge" width="120" align="right" alt="downloads">](https://github.com/DSTitan/Fluffy-Fetcher-E621/releases)
 
 [<img src="https://media.discordapp.net/attachments/845764947928416297/1094852312838721546/Icon.png" width="250" align="left" alt="e621 mascot, Esix">](https://github.com/DSTitan/Fluffy-Fetcher-E621/releases)
 
