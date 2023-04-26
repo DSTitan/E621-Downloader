@@ -1,0 +1,488 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Maven+Pro");
+@import url("https://fonts.googleapis.com/css2?family=Roboto");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+*::-webkit-scrollbar {
+  width: 2px !important;
+}
+*::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  overflow-y: auto;
+  overflow-x: hidden !important;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #03051e !important;
+  text-rendering: optimizelegibility;
+  -webkit-text-size-adjust: 100%;
+     -moz-text-size-adjust: 100%;
+          text-size-adjust: 100%;
+  transition: 0.2s;
+}
+body .split-box {
+  height: calc(100% - 52px);
+}
+body .bg-primary {
+  background-color: #03051e !important;
+}
+body .bg-secondary {
+  background-color: #14172e !important;
+}
+body .bg-01 {
+  background-color: #282d4f !important;
+}
+body .shadow-01 {
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+}
+body .shadow-02 {
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+body .fetch-card {
+  transition: 1s;
+}
+body .fetch-card.state-0 {
+  width: 320px;
+}
+body .fetch-card.state-1 {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+body .fetch-card.state-2 {
+  width: 80%;
+}
+body .text.f-01 {
+  font-family: "Archivo Black", sans-serif;
+}
+body .text.f-02 {
+  font-family: "Roboto", sans-serif;
+}
+body .text.f-03 {
+  font-family: "Arial", sans-serif;
+}
+body .button {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+body .button button {
+  display: inline-flex;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: 0.3s;
+  cursor: pointer;
+  overflow: hidden;
+  color: white;
+  width: -moz-fit-content;
+  width: fit-content;
+  border: 3px solid transparent;
+}
+body .button button.start {
+  justify-content: start !important;
+}
+body .button button.color-theme {
+  color: #ffffff !important;
+}
+body .button button.shadow {
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+}
+body .button button.lock-black {
+  color: black;
+}
+body .button button.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+body .button button.full {
+  width: 100%;
+  justify-content: center;
+}
+body .button button.color-link {
+  padding: 0;
+}
+body .button button.color-link .button-text,
+body .button button.color-link .button-icon {
+  padding: 10px 5px;
+}
+body .button button.color-primary {
+  background-color: #e94560;
+}
+body .button button.color-secondary {
+  background-color: #343a61;
+}
+body .button button.color-success {
+  background-color: #3ba55d;
+}
+body .button button.color-danger {
+  background-color: #e94560;
+}
+body .button button.color-blurple {
+  background-color: #5865f2;
+}
+body .button button.color-gold {
+  background-color: #df9d23;
+}
+body .button button.color-e6 {
+  background-color: #004996;
+}
+body .button button .button-text,
+body .button button .button-icon {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 13px;
+  height: 100%;
+}
+body .button button .button-text.both,
+body .button button .button-icon.both {
+  padding-right: 0;
+}
+body .button button .button-text.both-1,
+body .button button .button-icon.both-1 {
+  padding-left: 0;
+}
+body .button button .button-icon {
+  font-size: 1.5rem;
+}
+body .button button .button-icon.small {
+  font-size: 1.3rem;
+}
+body .button button.no-pad .button-text,
+body .button button.no-pad .button-icon {
+  padding: 0;
+}
+body .button button.hover03 {
+  color: #ffffff;
+  background-color: transparent;
+}
+body .button button.hover03.color-primary {
+  border-color: #e94560;
+}
+body .button button.hover03.color-secondary {
+  border-color: #343a61;
+}
+body .button button.hover03.color-success {
+  border-color: #3ba55d;
+}
+body .button button.hover03.color-danger {
+  border-color: #e94560;
+}
+body .button button.hover03.color-blurple {
+  border-color: #5865f2;
+}
+body .button button.hover03.color-gold {
+  border-color: #df9d23;
+}
+body .button button:hover.color-link {
+  border-bottom: 1px solid #ffffff;
+  border-radius: 0;
+}
+body .button button:hover.hover01 {
+  color: #ffffff;
+  background-color: transparent;
+}
+body .button button:hover.hover01.full {
+  width: calc(100% - 5px) !important;
+  height: calc(100% - 3px) !important;
+}
+body .button button:hover.hover01.color-primary {
+  border-color: #e94560;
+}
+body .button button:hover.hover01.color-secondary {
+  border-color: #343a61;
+}
+body .button button:hover.hover01.color-success {
+  border-color: #3ba55d;
+}
+body .button button:hover.hover01.color-danger {
+  border-color: #e94560;
+}
+body .button button:hover.hover01.color-blurple {
+  border-color: #5865f2;
+}
+body .button button:hover.hover01.color-gold {
+  border-color: #df9d23;
+}
+body .button button:hover.hover02.color-primary {
+  background-color: #e62e4d;
+}
+body .button button:hover.hover02.color-secondary {
+  background-color: #222640;
+}
+body .button button:hover.hover02.color-success {
+  background-color: #2e7f48;
+}
+body .button button:hover.hover02.color-danger {
+  background-color: #ca1835;
+}
+body .button button:hover.hover02.color-blurple {
+  background-color: #404ff0;
+}
+body .button button:hover.hover02.color-gold {
+  background-color: #cb8e1e;
+}
+body .button button:hover.hover02.color-e6 {
+  background-color: #003d7d;
+}
+body .button button:hover.hover03 {
+  color: white;
+}
+body .button button:hover.hover03.color-primary {
+  background-color: #e94560;
+}
+body .button button:hover.hover03.color-secondary {
+  background-color: #343a61;
+}
+body .button button:hover.hover03.color-success {
+  background-color: #3ba55d;
+}
+body .button button:hover.hover03.color-danger {
+  background-color: #e94560;
+}
+body .button button:hover.hover03.color-blurple {
+  background-color: #5865f2;
+}
+body .button button:hover.hover03.color-gold {
+  background-color: #df9d23;
+}
+body .form .form-inputs, body .form.form-inputs {
+  display: grid;
+  gap: 0.5rem;
+}
+body .form .form-input.disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+body .form .form-input.disabled .label,
+body .form .form-input.disabled .input,
+body .form .form-input.disabled .error {
+  pointer-events: none;
+}
+body .form .form-input input::-webkit-outer-spin-button,
+body .form .form-input input::-webkit-inner-spin-button {
+  display: none;
+}
+body .form .form-input.text-input, body .form .form-input.number-input, body .form .form-input.textarea-input, body .form .form-input.select-input, body .form .form-input.combo-select-input, body .form .form-input.button-select-input, body .form .form-input.toggle-switch-input, body .form .form-input.toggle-checkbox-input {
+  display: grid;
+  gap: 3px;
+}
+body .form .form-input.text-input .label, body .form .form-input.number-input .label, body .form .form-input.textarea-input .label, body .form .form-input.select-input .label, body .form .form-input.combo-select-input .label, body .form .form-input.button-select-input .label, body .form .form-input.toggle-switch-input .label, body .form .form-input.toggle-checkbox-input .label {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  color: #ffffff;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+body .form .form-input.text-input .label .tooltip-icon, body .form .form-input.number-input .label .tooltip-icon, body .form .form-input.textarea-input .label .tooltip-icon, body .form .form-input.select-input .label .tooltip-icon, body .form .form-input.combo-select-input .label .tooltip-icon, body .form .form-input.button-select-input .label .tooltip-icon, body .form .form-input.toggle-switch-input .label .tooltip-icon, body .form .form-input.toggle-checkbox-input .label .tooltip-icon {
+  height: -moz-fit-content;
+  height: fit-content;
+  font-size: 15px;
+}
+body .form .form-input.text-input .error, body .form .form-input.number-input .error, body .form .form-input.textarea-input .error, body .form .form-input.select-input .error, body .form .form-input.combo-select-input .error, body .form .form-input.button-select-input .error, body .form .form-input.toggle-switch-input .error, body .form .form-input.toggle-checkbox-input .error {
+  color: #f04747;
+  font-size: 14px;
+  display: none;
+}
+body .form .form-input.text-input.error .input, body .form .form-input.number-input.error .input, body .form .form-input.textarea-input.error .input, body .form .form-input.select-input.error .input, body .form .form-input.combo-select-input.error .input, body .form .form-input.button-select-input.error .input, body .form .form-input.toggle-switch-input.error .input, body .form .form-input.toggle-checkbox-input.error .input {
+  border-color: #f04747;
+  opacity: 1;
+}
+body .form .form-input.text-input.error .error, body .form .form-input.number-input.error .error, body .form .form-input.textarea-input.error .error, body .form .form-input.select-input.error .error, body .form .form-input.combo-select-input.error .error, body .form .form-input.button-select-input.error .error, body .form .form-input.toggle-switch-input.error .error, body .form .form-input.toggle-checkbox-input.error .error {
+  display: block;
+}
+body .form .form-input.text-input .icon, body .form .form-input.number-input .icon, body .form .form-input.textarea-input .icon, body .form .form-input.select-input .icon, body .form .form-input.combo-select-input .icon, body .form .form-input.button-select-input .icon, body .form .form-input.toggle-switch-input .icon, body .form .form-input.toggle-checkbox-input .icon {
+  color: #ffffff;
+  height: 35px !important;
+  font-size: 35px;
+}
+body .form .form-input.text-input .icon .emoji-mart-emoji, body .form .form-input.number-input .icon .emoji-mart-emoji, body .form .form-input.textarea-input .icon .emoji-mart-emoji, body .form .form-input.select-input .icon .emoji-mart-emoji, body .form .form-input.combo-select-input .icon .emoji-mart-emoji, body .form .form-input.button-select-input .icon .emoji-mart-emoji, body .form .form-input.toggle-switch-input .icon .emoji-mart-emoji, body .form .form-input.toggle-checkbox-input .icon .emoji-mart-emoji {
+  height: 35px !important;
+  display: flex;
+  align-items: center;
+}
+body .form .form-input.text-input .icon .emoji-mart-emoji img, body .form .form-input.number-input .icon .emoji-mart-emoji img, body .form .form-input.textarea-input .icon .emoji-mart-emoji img, body .form .form-input.select-input .icon .emoji-mart-emoji img, body .form .form-input.combo-select-input .icon .emoji-mart-emoji img, body .form .form-input.button-select-input .icon .emoji-mart-emoji img, body .form .form-input.toggle-switch-input .icon .emoji-mart-emoji img, body .form .form-input.toggle-checkbox-input .icon .emoji-mart-emoji img {
+  padding: 3px;
+  height: auto !important;
+}
+body .form .form-input.text-input .icon-right, body .form .form-input.number-input .icon-right, body .form .form-input.textarea-input .icon-right, body .form .form-input.select-input .icon-right, body .form .form-input.combo-select-input .icon-right, body .form .form-input.button-select-input .icon-right, body .form .form-input.toggle-switch-input .icon-right, body .form .form-input.toggle-checkbox-input .icon-right {
+  position: absolute;
+  z-index: 1 !important;
+  top: 30px;
+  right: 7px;
+}
+body .form .form-input.text-input .icon-right ~ .input, body .form .form-input.number-input .icon-right ~ .input, body .form .form-input.textarea-input .icon-right ~ .input, body .form .form-input.select-input .icon-right ~ .input, body .form .form-input.combo-select-input .icon-right ~ .input, body .form .form-input.button-select-input .icon-right ~ .input, body .form .form-input.toggle-switch-input .icon-right ~ .input, body .form .form-input.toggle-checkbox-input .icon-right ~ .input {
+  padding-right: 45px;
+}
+body .form .form-input.text-input .icon-left, body .form .form-input.number-input .icon-left, body .form .form-input.textarea-input .icon-left, body .form .form-input.select-input .icon-left, body .form .form-input.combo-select-input .icon-left, body .form .form-input.button-select-input .icon-left, body .form .form-input.toggle-switch-input .icon-left, body .form .form-input.toggle-checkbox-input .icon-left {
+  position: absolute;
+  z-index: 1 !important;
+  top: 7px;
+  left: 7px;
+}
+body .form .form-input.text-input .icon-left ~ .label, body .form .form-input.number-input .icon-left ~ .label, body .form .form-input.textarea-input .icon-left ~ .label, body .form .form-input.select-input .icon-left ~ .label, body .form .form-input.combo-select-input .icon-left ~ .label, body .form .form-input.button-select-input .icon-left ~ .label, body .form .form-input.toggle-switch-input .icon-left ~ .label, body .form .form-input.toggle-checkbox-input .icon-left ~ .label {
+  top: 30px;
+}
+body .form .form-input.text-input .icon-left ~ .input, body .form .form-input.number-input .icon-left ~ .input, body .form .form-input.textarea-input .icon-left ~ .input, body .form .form-input.select-input .icon-left ~ .input, body .form .form-input.combo-select-input .icon-left ~ .input, body .form .form-input.button-select-input .icon-left ~ .input, body .form .form-input.toggle-switch-input .icon-left ~ .input, body .form .form-input.toggle-checkbox-input .icon-left ~ .input {
+  padding-left: 45px;
+}
+body .form .form-input.text-input .input, body .form .form-input.number-input .input, body .form .form-input.textarea-input .input {
+  padding: 10px 13px;
+  border-radius: 7px;
+  background-color: transparent;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  opacity: 0.6;
+  outline: none;
+  transition: 0.2s;
+  z-index: 1 !important;
+}
+body .form .form-input.text-input .input:hover, body .form .form-input.number-input .input:hover, body .form .form-input.textarea-input .input:hover {
+  opacity: 0.8;
+}
+body .form .form-input.text-input .input:focus, body .form .form-input.number-input .input:focus, body .form .form-input.textarea-input .input:focus {
+  opacity: 1;
+  border-color: #e94560;
+}
+body .form .form-input.text-input.dark .input, body .form .form-input.number-input.dark .input, body .form .form-input.textarea-input.dark .input {
+  border-color: white;
+  color: white;
+}
+body .form .form-input.text-input.dark .input:focus, body .form .form-input.number-input.dark .input:focus, body .form .form-input.textarea-input.dark .input:focus {
+  border-color: #e94560;
+}
+body .form .form-input.text-input.dark .icon, body .form .form-input.number-input.dark .icon, body .form .form-input.textarea-input.dark .icon {
+  color: white;
+}
+body .form .form-input.toggle-checkbox-input {
+  margin-top: 3px;
+}
+body .form .form-input.number-input.disabled .arrows {
+  pointer-events: none;
+}
+body .form .form-input.number-input .input {
+  width: 100%;
+}
+body .form .form-input.number-input .arrows {
+  color: #ffffff;
+  font-size: 35px;
+  cursor: pointer;
+  display: flex;
+  position: absolute;
+  z-index: 10 !important;
+  top: 30px;
+  right: 7px;
+  justify-content: center;
+  align-items: center;
+}
+body .form .form-input.number-input .arrows ~ .input {
+  padding-right: 80px;
+}
+body .form .form-input.number-input .arrows .left-arrow,
+body .form .form-input.number-input .arrows .right-arrow {
+  opacity: 0.5;
+  transition: 0.5s;
+}
+body .form .form-input.number-input .arrows .left-arrow:hover,
+body .form .form-input.number-input .arrows .right-arrow:hover {
+  color: #e94560;
+  opacity: 1;
+  transform: rotate(180deg);
+}
+body .form .form-input.textarea-input .input {
+  min-height: 100px;
+  resize: vertical;
+}
+body .form .form-input.textarea-input .input::-webkit-scrollbar-corner, body .form .form-input.textarea-input .input::-webkit-resizer {
+  height: 20px;
+  width: 20px;
+  border-radius: 5px 0px 2px 0px;
+  background-color: #ffffff;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+body .form .form-input.textarea-input .input::-webkit-scrollbar {
+  width: 10px !important;
+}
+body .form .form-input.textarea-input .input:focus::-webkit-resizer {
+  background-color: #e94560;
+}
+body .form .form-input.textarea-input.small .input {
+  min-height: 48px;
+  height: 48px;
+}
+body .form .form-input.textarea-input.error .input::-webkit-resizer {
+  background-color: #f04747;
+}
+body .form .form-input.button-select-input .input {
+  display: flex;
+  flex-wrap: wrap;
+}
+body .form .form-input.button-select-input .input button .button-icon,
+body .form .form-input.button-select-input .input button .button-text {
+  padding: 1px 7px;
+}
+body .form .form-input.button-select-input .input button .right {
+  padding-left: 0 !important;
+}
+body .form .form-input.button-select-input .input button .left {
+  padding-right: 0 !important;
+}
+body .form .form-input.color-picker .main {
+  width: 100%;
+  background-color: var(--backgroundColor01);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: center;
+}
+body .form .form-input.color-picker .main .color-box {
+  border-radius: 7px;
+}
+body .form .form-input.color-picker .main .color-hex {
+  border-radius: 7px;
+  padding: 5px 20px;
+  margin-right: 3px;
+  background-color: var(--backgroundColor02);
+}
+body code {
+  font-size: 16px;
+  padding: 3px 10px;
+  background-color: rgba(0, 0, 0, 0.3019607843);
+  border-radius: 4px;
+}
+body .post-preview {
+  transition: 0.2s;
+}
+body .post-preview:hover {
+  transform: translateY(-3px);
+}
+body .post-preview:hover .post-trash {
+  opacity: 1;
+}
+body .post-preview .post-trash {
+  transition: 0.2s;
+  opacity: 0;
+  padding: 4px;
+}
+body .post-preview .post-trash:hover {
+  transform: translateY(-2px);
+}/*# sourceMappingURL=index.style.css.map */

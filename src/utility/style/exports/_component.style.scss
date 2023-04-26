@@ -1,0 +1,540 @@
+.split-box {
+    height: calc(100% - 52px);
+}
+
+.bg-primary {
+    background-color: $backgroundPrimary !important;
+}
+.bg-secondary {
+    background-color: $backgroundSecondary !important;
+}
+.bg-01 {
+    background-color: $background01 !important;
+}
+
+.shadow-01 {
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+}
+
+.shadow-02 {
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.fetch-card {
+    transition: 1s;
+
+    &.state-0 {
+        width: 320px;
+    }
+    &.state-1 {
+        width: fit-content;
+    }
+    &.state-2 {
+        width: 80%;
+    }
+}
+
+.text {
+    &.f-01 {
+        font-family: "Archivo Black", sans-serif;
+    }
+    &.f-02 {
+        font-family: "Roboto", sans-serif;
+    }
+    &.f-03 {
+        font-family: "Arial", sans-serif;
+    }
+}
+
+.button {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    button {
+        display: inline-flex;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: 0.3s;
+        cursor: pointer;
+        overflow: hidden;
+        color: white;
+        width: fit-content;
+        border: 3px solid transparent;
+
+        &.start {
+            justify-content: start !important;
+        }
+
+        &.color-theme {
+            color: $textPrimary !important;
+        }
+
+        &.shadow {
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+        }
+
+        &.lock-black {
+            color: black;
+        }
+
+        &.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        &.full {
+            width: 100%;
+            justify-content: center;
+        }
+
+        &.color-link {
+            padding: 0;
+            .button-text,
+            .button-icon {
+                padding: 10px 5px;
+            }
+        }
+
+        &.color-primary {
+            background-color: $buttonPrimary;
+        }
+        &.color-secondary {
+            background-color: $buttonSecondary;
+        }
+        &.color-success {
+            background-color: $buttonSuccess;
+        }
+        &.color-danger {
+            background-color: $buttonDanger;
+        }
+        &.color-blurple {
+            background-color: $buttonBlurple;
+        }
+        &.color-gold {
+            background-color: $buttonGold;
+        }
+        &.color-e6 {
+            background-color: #004996;
+        }
+
+        .button-text,
+        .button-icon {
+            display: inline-flex;
+            align-items: center;
+            padding: 7px 13px;
+            height: 100%;
+            &.both {
+                padding-right: 0;
+            }
+            &.both-1 {
+                padding-left: 0;
+            }
+        }
+
+        .button-icon {
+            font-size: 1.5rem;
+            &.small {
+                font-size: 1.3rem;
+            }
+        }
+
+        &.no-pad {
+            .button-text,
+            .button-icon {
+                padding: 0;
+            }
+        }
+
+        &.hover03 {
+            color: $textPrimary;
+            background-color: transparent;
+
+            &.color-primary {
+                border-color: $buttonPrimary;
+            }
+            &.color-secondary {
+                border-color: $buttonSecondary;
+            }
+            &.color-success {
+                border-color: $buttonSuccess;
+            }
+            &.color-danger {
+                border-color: $buttonDanger;
+            }
+            &.color-blurple {
+                border-color: $buttonBlurple;
+            }
+            &.color-gold {
+                border-color: $buttonGold;
+            }
+        }
+
+        &:hover {
+            &.color-link {
+                border-bottom: 1px solid $colorWhite;
+                border-radius: 0;
+            }
+            &.hover01 {
+                color: $textPrimary;
+                background-color: transparent;
+                &.full {
+                    width: calc(100% - 5px) !important;
+                    height: calc(100% - 3px) !important;
+                }
+
+                &.color-primary {
+                    border-color: $buttonPrimary;
+                }
+                &.color-secondary {
+                    border-color: $buttonSecondary;
+                }
+                &.color-success {
+                    border-color: $buttonSuccess;
+                }
+                &.color-danger {
+                    border-color: $buttonDanger;
+                }
+                &.color-blurple {
+                    border-color: $buttonBlurple;
+                }
+                &.color-gold {
+                    border-color: $buttonGold;
+                }
+            }
+
+            &.hover02 {
+                &.color-primary {
+                    background-color: darken($buttonPrimary, 5%);
+                }
+                &.color-secondary {
+                    background-color: darken($buttonSecondary, 10%);
+                }
+                &.color-success {
+                    background-color: darken($buttonSuccess, 10%);
+                }
+                &.color-danger {
+                    background-color: darken($buttonDanger, 15%);
+                }
+                &.color-blurple {
+                    background-color: darken($buttonBlurple, 5%);
+                }
+                &.color-gold {
+                    background-color: darken($buttonGold, 5%);
+                }
+                &.color-e6 {
+                    background-color: darken(#004996, 5%);
+                }
+            }
+
+            &.hover03 {
+                color: white;
+                &.color-primary {
+                    background-color: $buttonPrimary;
+                }
+                &.color-secondary {
+                    background-color: $buttonSecondary;
+                }
+                &.color-success {
+                    background-color: $buttonSuccess;
+                }
+                &.color-danger {
+                    background-color: $buttonDanger;
+                }
+                &.color-blurple {
+                    background-color: $buttonBlurple;
+                }
+                &.color-gold {
+                    background-color: $buttonGold;
+                }
+            }
+        }
+    }
+}
+
+.form {
+    .form-inputs,
+    &.form-inputs {
+        display: grid;
+        gap: 0.5rem;
+    }
+    .form-input {
+        &.disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+            .label,
+            .input,
+            .error {
+                pointer-events: none;
+            }
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            display: none;
+        }
+
+        &.text-input,
+        &.number-input,
+        &.textarea-input,
+        &.select-input,
+        &.combo-select-input,
+        &.button-select-input,
+        &.toggle-switch-input,
+        &.toggle-checkbox-input {
+            display: grid;
+            gap: 3px;
+            .label {
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                color: $textPrimary;
+                font-size: 14px;
+                display: flex;
+                align-items: center;
+                gap: 3px;
+
+                .tooltip-icon {
+                    height: fit-content;
+                    font-size: 15px;
+                }
+            }
+            .error {
+                color: $colorDanger;
+                font-size: 14px;
+                display: none;
+            }
+
+            &.error {
+                .input {
+                    border-color: $colorDanger;
+                    opacity: 1;
+                }
+                .error {
+                    display: block;
+                }
+            }
+            .icon {
+                color: $textPrimary;
+                height: 35px !important;
+                font-size: 35px;
+
+                .emoji-mart-emoji {
+                    height: 35px !important;
+                    display: flex;
+                    align-items: center;
+
+                    img {
+                        padding: 3px;
+                        height: auto !important;
+                    }
+                }
+            }
+            .icon-right {
+                position: absolute;
+                z-index: 1 !important;
+                top: 30px;
+                right: 7px;
+
+                ~ .input {
+                    padding-right: 45px;
+                }
+            }
+            .icon-left {
+                position: absolute;
+                z-index: 1 !important;
+                top: 7px;
+                left: 7px;
+                ~ .label {
+                    top: 30px;
+                }
+                ~ .input {
+                    padding-left: 45px;
+                }
+            }
+        }
+        &.text-input,
+        &.number-input,
+        &.textarea-input {
+            .input {
+                padding: 10px 13px;
+                border-radius: 7px;
+                background-color: transparent;
+                border: 2px solid $textPrimary;
+                color: $textPrimary;
+                opacity: 0.6;
+                outline: none;
+                transition: 0.2s;
+                z-index: 1 !important;
+                &:hover {
+                    opacity: 0.8;
+                }
+
+                &:focus {
+                    opacity: 1;
+                    border-color: $colorPrimary;
+                }
+            }
+
+            &.dark {
+                .input {
+                    border-color: white;
+                    color: white;
+                    &:focus {
+                        border-color: $colorPrimary;
+                    }
+                }
+                .icon {
+                    color: white;
+                }
+            }
+        }
+        &.toggle-checkbox-input {
+            margin-top: 3px;
+        }
+        &.number-input {
+            &.disabled {
+                .arrows {
+                    pointer-events: none;
+                }
+            }
+            .input {
+                width: 100%;
+            }
+            .arrows {
+                color: $textPrimary;
+                font-size: 35px;
+                cursor: pointer;
+                display: flex;
+                position: absolute;
+                z-index: 10 !important;
+                top: 30px;
+                right: 7px;
+                justify-content: center;
+                align-items: center;
+
+                ~ .input {
+                    padding-right: 80px;
+                }
+
+                .left-arrow,
+                .right-arrow {
+                    opacity: 0.5;
+                    transition: 0.5s;
+                    &:hover {
+                        color: $colorPrimary;
+                        opacity: 1;
+                        transform: rotate(180deg);
+                    }
+                }
+            }
+        }
+        &.textarea-input {
+            .input {
+                min-height: 100px;
+                resize: vertical;
+                &::-webkit-scrollbar-corner,
+                &::-webkit-resizer {
+                    height: 20px;
+                    width: 20px;
+                    border-radius: 5px 0px 2px 0px;
+                    background-color: $textPrimary;
+                    transition: 0.2s;
+                }
+                &::-webkit-scrollbar {
+                    width: 10px !important;
+                }
+                &:focus {
+                    &::-webkit-resizer {
+                        background-color: $colorPrimary;
+                    }
+                }
+            }
+            &.small .input {
+                min-height: 48px;
+                height: 48px;
+            }
+            &.error .input {
+                &::-webkit-resizer {
+                    background-color: $colorDanger;
+                }
+            }
+        }
+
+        &.button-select-input {
+            .input {
+                display: flex;
+                flex-wrap: wrap;
+
+                button {
+                    .button-icon,
+                    .button-text {
+                        padding: 1px 7px;
+                    }
+                    .right {
+                        padding-left: 0 !important;
+                    }
+                    .left {
+                        padding-right: 0 !important;
+                    }
+                }
+            }
+        }
+
+        &.color-picker {
+            .main {
+                width: 100%;
+                background-color: var(--backgroundColor01);
+                border-radius: 7px;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                justify-content: center;
+
+                .color-box {
+                    border-radius: 7px;
+                }
+                .color-hex {
+                    border-radius: 7px;
+                    padding: 5px 20px;
+                    margin-right: 3px;
+                    background-color: var(--backgroundColor02);
+                }
+            }
+        }
+    }
+}
+
+code {
+    font-size: 16px;
+    padding: 3px 10px;
+    background-color: #0000004d;
+    border-radius: 4px;
+}
+
+.post-preview {
+    transition: 0.2s;
+    &:hover {
+        transform: translateY(-3px);
+        .post-trash {
+            opacity: 1;
+        }
+    }
+    .post-trash {
+        transition: 0.2s;
+        opacity: 0;
+        padding: 4px;
+        &:hover {
+            transform: translateY(-2px);
+        }
+    }
+}

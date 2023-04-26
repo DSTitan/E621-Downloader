@@ -1,22 +1,20 @@
-# Fluffy Fetcher E621
+# Fluffy Fetcher
 
-[<img src="https://img.shields.io/github/downloads/DSTitan/Fluffy-Fetcher-E621/total?color=004996&label=Download&style=for-the-badge" width="120" align="right" alt="downloads">](https://github.com/DSTitan/Fluffy-Fetcher-E621/releases)
+[<img src="https://img.shields.io/github/downloads/DSTitan/Fluffy-Fetcher/total?color=004996&label=Download&style=for-the-badge" width="120" align="right" alt="downloads">](https://github.com/DSTitan/Fluffy-Fetcher/releases)
 
-[<img src="https://media.discordapp.net/attachments/845764947928416297/1094852312838721546/Icon.png" width="250" align="left" alt="e621 mascot, Esix">](https://github.com/DSTitan/Fluffy-Fetcher-E621/releases)
+[<img src="https://media.discordapp.net/attachments/845764947928416297/1094852312838721546/Icon.png" width="250" align="left" alt="e621 mascot, Esix">](https://github.com/DSTitan/Fluffy-Fetcher/releases)
 
-A quick and easy way to bulk fetch and download [e621](https://e621.net) posts by tags.
+A quick and easy way to bulk fetch and download [e926](https://e926.net) or [e621](https://e621.net) posts by tags.
 
-The download can be found [here](https://github.com/DSTitan/Fluffy-Fetcher-E621/releases). <br/><br/>
+The download can be found [here](https://github.com/DSTitan/Fluffy-Fetcher/releases). <br/><br/>
 
 ## Usage
 
-To use the program, simply run it and input the tags you want to filter by, the maximum number of posts to search for, and the download location. It's a straightforward process! <br/><br/>
+To use the program, select the website, input tags, change limit, choose a download location, preview posts retrieved, remove unwanted ones, and download! It's a straightforward process! <br/><br/>
 
 ## Configure
 
-To configure the program settings, edit the `config.json` file.
-
-If you want to apply certain tags every time you search, add them to the `static_tags` field in the `config.json` file within double quotes. For example `"static_tags": "rating:safe"`.
+Configuration is simple as heading to the settings tab and changing what needs to be changed. Static tags allows you to have tags you don't want to continuously enter, for example blacklisted tags or rating, status and order tags. Some blacklisted tags are already added by default.
 
 #
 
