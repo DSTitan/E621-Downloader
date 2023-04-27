@@ -28,3 +28,7 @@ program.config
 
 tailwind.config.js
 .prettierrc.js
+yarn.lock
+
+/src/utility/style/index.style.css.map
+/src/utility/style/index.style.css

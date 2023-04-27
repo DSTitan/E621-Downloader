@@ -40,28 +40,22 @@
     "build": {
         "appId": "com.fluffyfetcher.dstitan",
         "productName": "Fluffy Fetcher",
+        "icon": "public/media/icons/512x512.png",
         "extends": null,
         "win": {
             "target": [
                 {
-                    "target": "portable",
-                    "icon": "public/media/icons/512x512.ico"
+                    "target": "portable"
                 }
             ]
         },
         "mac": {
-            "target": [
-                {
-                    "target": "default",
-                    "icon": "public/media/icons/512x512.icns"
-                }
-            ]
+            "category": "fluffyfetcher.app.gallery.download"
         },
         "linux": {
             "target": [
                 {
-                    "target": "AppImage",
-                    "icon": "public/media/icons/512x512.png"
+                    "target": "AppImage"
                 }
             ]
         },
