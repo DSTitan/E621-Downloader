@@ -38,14 +38,30 @@
         "eject": "react-scripts eject"
     },
     "build": {
-        "icon": "public/media/logo.ico",
         "appId": "com.fluffyfetcher.dstitan",
         "productName": "Fluffy Fetcher",
         "extends": null,
         "win": {
             "target": [
                 {
-                    "target": "portable"
+                    "target": "portable",
+                    "icon": "public/media/icons/512x512.ico"
+                }
+            ]
+        },
+        "mac": {
+            "target": [
+                {
+                    "target": "default",
+                    "icon": "public/media/icons/512x512.icns"
+                }
+            ]
+        },
+        "linux": {
+            "target": [
+                {
+                    "target": "AppImage",
+                    "icon": "public/media/icons/512x512.png"
                 }
             ]
         },
