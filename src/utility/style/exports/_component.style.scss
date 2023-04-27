@@ -538,3 +538,66 @@ code {
         }
     }
 }
+
+.pagination {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    font-family: "Archivo Black", sans-serif;
+
+    display: flex;
+    justify-content: center;
+    ul {
+        display: flex;
+        background-color: $backgroundSecondary;
+        color: $colorWhite;
+        padding: 5px 3px;
+        border-radius: 4px;
+    }
+
+    li {
+        list-style: none;
+        line-height: 30px;
+        text-align: center;
+        font-size: 17px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all .3s ease;
+
+        &.next,
+        &.prev,
+        &.numb {
+            height: 33px;
+            min-width: 33px;
+            padding: 0 6px;
+            border-radius: 4px;
+            margin: 0 3px;
+            line-height: 32px;
+        }
+
+        &.dots {
+            margin: 0 3px;
+            font-size: 20px;
+            cursor: default;
+        }
+
+        &.button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 3px;
+            line-height: 33px;
+        }
+        &.active {
+            background-color:$colorPrimary;
+        }
+        &.button:hover,
+        &.numb:hover {
+            background-color: $background01;
+        }
+    }
+}

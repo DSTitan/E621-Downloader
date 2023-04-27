@@ -17,6 +17,7 @@ interface ConfigData {
             e621: string[];
             e926: string[];
         };
+        postPerPreviewPage: number;
         skipPreview: boolean;
         galleryPaths: string[];
     };
@@ -33,6 +34,7 @@ const defaultConfigData: ConfigData = {
             e621: ["-blood", "-vore", "-feces", "-peeing", "-gore", "-scat", "-watersports", "-loli", "-shota"],
             e926: ["status:active"],
         },
+        postPerPreviewPage: 250,
         skipPreview: false,
         galleryPaths: [],
     },
@@ -44,7 +46,7 @@ const defaultConfigData: ConfigData = {
 
 let configQueue: Promise<any> = Promise.resolve();
 
-function createWindow() {
+const createWindow = () => {
     const win = new BrowserWindow({
         width: 1000,
         height: 700,
@@ -81,7 +83,7 @@ function createWindow() {
             hardResetMethod: "exit",
         });
     }
-}
+};
 
 app.whenReady().then(() => {
     installExtension(REACT_DEVELOPER_TOOLS)
@@ -102,6 +104,8 @@ app.whenReady().then(() => {
         }
     });
 });
+
+(Dot as any).keepArray = true;
 
 const IpcReadConfig = (event: Electron.IpcMainInvokeEvent, filePath: string): ConfigData => {
     const configPath = path.resolve(process.env.PORTABLE_EXECUTABLE_DIR || "", filePath);

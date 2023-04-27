@@ -98,6 +98,7 @@ type ReducerState = {
                 e621: string[];
                 e926: string[];
             };
+            postPerPreviewPage: number;
             skipPreview: boolean;
             galleryPaths: string[];
         };

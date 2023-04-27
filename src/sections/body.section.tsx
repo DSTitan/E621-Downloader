@@ -7,6 +7,7 @@ import FetchModule from "../modules/fetch.module";
 
 import MediaViewerComponent from "../components/mediaviewer.component";
 import FormComponent from "../components/forminput.component";
+import PaginationComponent from "../components/pagination.component";
 
 import * as Utility from "../utility/utils/utils.utility";
 
@@ -22,6 +23,15 @@ const Section: SectionProps = ({ data, dispatch }) => {
 
 const FetchPage: SectionProps = ({ data, dispatch }) => {
     const activePost = React.useState<Post | null>(null);
+    const currentPreviewPage = React.useState<number>(1);
+    const currentPreviewPagePosts = React.useState<Post[]>([]);
+
+    React.useEffect(() => {
+        const indexOfLastLog = currentPreviewPage[0] * data.config.settings.postPerPreviewPage;
+        const indexOfFirstLog = indexOfLastLog - data.config.settings.postPerPreviewPage;
+        currentPreviewPagePosts[1](data.fetchOptions.posts.list.slice(indexOfFirstLog, indexOfLastLog));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentPreviewPage[0], data.config.settings.postPerPreviewPage, data.fetchOptions.posts.list]);
 
     return (
         <>
@@ -166,7 +176,7 @@ const FetchPage: SectionProps = ({ data, dispatch }) => {
                         </div>,
                         <div className="m-auto bg-01 p-5 rounded-lg shadow-01">
                             <div className="flex flex-wrap justify-center gap-4">
-                                {data.fetchOptions.posts.list.map((post) => (
+                                {currentPreviewPagePosts[0].map((post) => (
                                     <div key={post.id} className="post-preview relative preview-image rounded-lg overflow-hidden shadow-01 cursor-pointer">
                                         {["webm", "gif"].includes(post.file.ext) && (
                                             <div className="bottom-1 left-1 absolute bg-secondary px-2 rounded-md w-fit shadow-02">
@@ -355,35 +365,42 @@ const FetchPage: SectionProps = ({ data, dispatch }) => {
             </div>
 
             {!data.fetchOptions.posts.errorMessage && data.fetchOptions.step === 4 && (
-                <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 button flex gap-3 bg-primary p-2 rounded-md shadow-01">
-                    <button
-                        className="hover02 color-secondary drop-shadow-lg"
-                        onClick={() => {
-                            Utility.PageTransition(dispatch, 500, () => {
-                                dispatch({ type: "update::fetch-step", data: 2 });
-                                dispatch({ type: "update::fetch-posts", data: [] });
-                            });
-                        }}>
-                        <span className="button-icon">
-                            <BiArrowBack />
-                        </span>
-                    </button>
-                    <button
-                        className="hover02 color-primary drop-shadow-lg"
-                        onClick={async () => {
-                            await Utility.PageTransition(dispatch, 500, () => dispatch({ type: "update::fetch-step", data: 5 }));
-                            const downloaded = await FetchModule.StartFetchDownload(data, dispatch);
-                            Utility.PageTransition(dispatch, 500, async () => {
-                                dispatch({ type: "update::config", data: await (window as any).program.writeConfig({ "metadata.posts": [...data.config.metadata.posts, ...downloaded], "metadata.totalDownloads": data.config.metadata.totalDownloads + data.fetchOptions.posts.downloadsSuccessful }) });
-                                dispatch({ type: "update::fetch-step", data: 6 });
-                            });
-                        }}>
-                        <span className="button-icon both">
-                            <BiDownload />
-                        </span>
-                        <span className="button-text">Download</span>
-                    </button>
-                </div>
+                <>
+                    {data.fetchOptions.posts.list.length > data.config.settings.postPerPreviewPage && (
+                        <div className="absolute top-3 left-1/2 transform -translate-x-1/2 button flex gap-3 bg-primary p-2 rounded-md shadow-01">
+                            <PaginationComponent changePage={(pageNumber: number) => currentPreviewPage[1](pageNumber)} currentPage={currentPreviewPage[0]} dataPerPage={data.config.settings.postPerPreviewPage} totalData={data.fetchOptions.posts.list.length} />
+                        </div>
+                    )}
+                    <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 button flex gap-3 bg-primary p-2 rounded-md shadow-01">
+                        <button
+                            className="hover02 color-secondary drop-shadow-lg"
+                            onClick={() => {
+                                Utility.PageTransition(dispatch, 500, () => {
+                                    dispatch({ type: "update::fetch-step", data: 2 });
+                                    dispatch({ type: "update::fetch-posts", data: [] });
+                                });
+                            }}>
+                            <span className="button-icon">
+                                <BiArrowBack />
+                            </span>
+                        </button>
+                        <button
+                            className="hover02 color-primary drop-shadow-lg"
+                            onClick={async () => {
+                                await Utility.PageTransition(dispatch, 500, () => dispatch({ type: "update::fetch-step", data: 5 }));
+                                const downloaded = await FetchModule.StartFetchDownload(data, dispatch);
+                                Utility.PageTransition(dispatch, 500, async () => {
+                                    dispatch({ type: "update::config", data: await (window as any).program.writeConfig({ "metadata.posts": [...data.config.metadata.posts, ...downloaded], "metadata.totalDownloads": data.config.metadata.totalDownloads + data.fetchOptions.posts.downloadsSuccessful }) });
+                                    dispatch({ type: "update::fetch-step", data: 6 });
+                                });
+                            }}>
+                            <span className="button-icon both">
+                                <BiDownload />
+                            </span>
+                            <span className="button-text">Download</span>
+                        </button>
+                    </div>
+                </>
             )}
 
             {activePost[0] && (
@@ -499,6 +516,7 @@ const GalleryPage: SectionProps = ({ data, dispatch }) => {
                 files[1]([...files[0], ...folder.map((file: any) => ({ name: file, path }))]);
             })
         );
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
         <>
@@ -682,6 +700,7 @@ const SettingsPage: SectionProps = ({ data, dispatch }) => {
                             }}
                         />
                     </>
+                    {/* <div className="w-full h-1 bg-secondary rounded-sm my-4 opacity-75"></div> */}
                     {/* <div className="w-full h-1 bg-secondary rounded-sm my-4 opacity-75"></div>
                     <>
                         <p className="text text-[16px] f-01 text-white opacity-80">Gallery Folders</p>
